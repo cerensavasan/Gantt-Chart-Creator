@@ -15,6 +15,11 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
+app.get('/dates', function (req, res) {
+    console.log('dates received, thanks');
+});
+
+
 app.listen(port, function () {
     console.log('App is listening on port ' + port);
 });
