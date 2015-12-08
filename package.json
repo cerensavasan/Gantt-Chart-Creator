@@ -10,7 +10,7 @@
   "dependencies": {
     "express": "~4.9.0"
   },
-  "main": "Server.js",
+  "main": "server.js",
   "devDependencies": {},
   "keywords": [
     "heroku"
