@@ -1,0 +1,40 @@
+body
+{
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+body > article
+{
+  text-align: center;
+}
+
+h1
+{
+  margin: 10px 0;
+  color: rgb(232,122,18);
+}
+
+h2
+{
+  color: rgb(13,37,61);
+}
+
+.header-note
+{
+  margin: 5px 0 0 0;
+}
+
+.copyright
+{
+  font-size: 0.8em;
+  margin: 3px 0 0 0;
+}
+
+.edit
+{
+  margin: 20px;
+}
+#list
+{
+  text-align: center;
+}
