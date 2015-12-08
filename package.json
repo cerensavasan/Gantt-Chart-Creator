@@ -1,0 +1,19 @@
+{
+  "name": "a4",
+  "version": "0.0.1",
+  "description": "WPI CS 4241 assignment 3",
+  "author": "Ceren Savasan",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "~4.9.0"
+  },
+  "main": "Server.js",
+  "devDependencies": {},
+  "keywords": [
+    "heroku"
+  ],
+  "license": "ISC"
+}
