@@ -1,8 +1,8 @@
 {
-  "name": "a4",
+  "name": "Term Project",
   "version": "0.0.1",
-  "description": "WPI CS 4241 assignment 3",
-  "author": "Ceren Savasan",
+  "description": "WPI Term Projec",
+  "author": "Ceren Savasan, Adilet Issayev, Amelie Haase",
   "private": true,
   "scripts": {
     "start": "node server.js"

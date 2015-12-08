@@ -3,7 +3,7 @@ var path = require('path');
 var app = express();
 var port = process.env.PORT || 3000;
 
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.post('/', function (req, res) {
     console.log('sendfile get is working');
