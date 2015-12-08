@@ -14,12 +14,12 @@ app.use(bodyParser.urlencoded({
 
 app.post('/', function (req, res) {
     console.log('sendfile get is working');
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 app.get('/', function (req, res) {
     console.log('sendfile get is working');
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 app.listen(port, function () {
