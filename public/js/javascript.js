@@ -28,7 +28,10 @@ function displayCalendar() {
           return;
 
         if(req.status === 200) {
-          //buildList(JSON.parse(req.responseText));
+          //fill table here
+          
+          //create this function below
+          //buildCalendar(JSON.parse(req.responseText));
           //el.value = "";
           //mydiv.innerHTML = JSON.parse(req.responseText);
         }
