@@ -16,6 +16,8 @@ app.get('/', function (req, res) {
 });
 
 app.get('/dates', function (req, res) {
+    // date 1 is this
+    // date 2 is this    
     console.log('dates received, thanks');
 });
 

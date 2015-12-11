@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="css/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>  
     </head>
+    <script type='text/javascript' src='js/script.js'></script>
+  </head>
    <body>
     <article>
       <header>
@@ -30,17 +32,4 @@
       </footer>
     </article>
   </body>
-  <script>
-  //Generate table of calendar
-  function populate(){
-  $('body').append('<div id="container" display="table">');
-  for(j = 0; j < 8; j++) {
-      $('body').append('<div id="row' + j + '" display="table-row">');
-      for(i = 0; i < 8; i++) {
-        $('body').append('<div class="square"></div>');
-      }
-  }
-  console.log("populating done");
-  }
-   </script>
 </html>
