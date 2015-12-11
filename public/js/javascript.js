@@ -1,5 +1,7 @@
 //generating table
 function populate(){
+  console.log("inside populate");
+  //var divBy = document.getElemen
   $('body').append('<div id="container" display="table">');
   for(j = 0; j < 8; j++) {
       $('body').append('<div id="row' + j + '" display="table-row">');
