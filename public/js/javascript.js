@@ -19,7 +19,12 @@ function populate(){
 function displayCalendar() {
   var date1 = document.getElementById('start');
   var date2 = document.getElementById('end');
-  console.log("Setting dates");
+  console.log("Date 1 received: " + date1);
+  console.log("Date 2 received: " + date2);
+  
+  var dates = date1.value + "," + date2.value;
+  console.log("Dates I'm sending: " + dates);
+  
   var req = new XMLHttpRequest();
   
   req.onreadystatechange = function() {
@@ -40,6 +45,5 @@ function displayCalendar() {
     
     req.open('POST', '/calendar', true);
     req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    req.send('date1='+date1.value, 'date2='+date2.value);
-
+    req.send("dates=" + dates);
 }
