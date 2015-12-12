@@ -19,7 +19,7 @@ function populate(){
 function displayCalendar() {
   var date1 = document.getElementById('start');
   var date2 = document.getElementById('end');
-  
+  console.log("Setting dates");
   var req = new XMLHttpRequest();
   
   req.onreadystatechange = function() {
