@@ -33,7 +33,7 @@ function displayCalendar() {
           return;
 
         if(req.status === 200) {
-          //fill table here
+          //populate html with the table sent from the server side
           
           //create this function below
           //buildCalendar(JSON.parse(req.responseText));
