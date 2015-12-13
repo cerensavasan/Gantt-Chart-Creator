@@ -39,13 +39,27 @@ app.post('/calendar', function (req, res) {
     var numDays = daydiff(parsedDate1, parsedDate2);
     console.log(numDays);
     
+    //create array of dates
+    var array_dates = getDates(datesArray[0], datesArray[1]);
+    
+    
+    
+    var stringToSave = ""; 
+    
+    stringToSave += "<table>"
+    stringToSave += "<tr>"
+    for(var j = 0; j < numDays; j++) {
+       stringToSave += "<td id='topCell_" + j + "'>"+  +"</td>"  
+    }
+    stringToSave += "<tr>"
+    
+   
     //read table on xml file
     var parser = xml2js.Parser();
     var loadedXML = fs.readFileSync('table.xml').toString().trim();
     parser.parseString(loadedXML, function (err, data) {
     console.log(data);
     });
-    
     
     
     var processedXML;
@@ -74,4 +88,29 @@ function parseDate(str) {
 
 function daydiff(first, second) {
     return Math.round((second-first)/(1000*60*60*24));
+}
+
+function getDates(startDate, stopDate, range) {
+    var dateArray = new Array();
+    var currentDate = startDate;
+    
+    Date.prototype.addDays = function(days) {
+    var dat = new Date(this.valueOf())
+    dat.setDate(dat.getDate() + days);
+    return dat;
+    }
+
+        dateArray.push( new Date (currentDate) )
+        currentDate = currentDate.addDays(range);
+        
+    }
+    return dateArray;
+}
+
+function addDay(date){
+    var dat = new Date(date);
+    dat.setDate(date.getDate());
+    return dat;
+    }
+    
 }
