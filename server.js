@@ -83,7 +83,9 @@ function parseDate(str) {
     var month = mdy[1];
     var day = mdy[2];
     
-    return new Date(year, month, day);
+    var dateObj = new Date(year, month, day);
+    console.log (dateObj);
+    return dateObj
 }
 
 function daydiff(first, second) {
@@ -104,5 +106,6 @@ function getDates(startDate, stopDate) {
         dateArray.push( new Date (currentDate) )
         currentDate = currentDate.addDays(1);
     }
+    console.log(dateArray);
     return dateArray;
 }
