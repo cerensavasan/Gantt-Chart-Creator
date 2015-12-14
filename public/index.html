@@ -14,14 +14,22 @@
         <h1>Gantt Chart</h1>
       </header>
       <form>
-        Enter start date:<br>
+        Enter Start Date:<br>
         <input type="date" id="start" min="2015-12-01"><br><br>
-        Enter end date:<br>
+        Enter End Date:<br>
         <input type="date" id="end" max="2016-01-31"><br><br>
         <button type="button" onclick="displayCalendar()"></button>
       </form>
-      
       <div id='calendar'> </div>
+      <form>
+      Task Name:<br>
+        <input type="text" id="taskName">
+      Start Date:<br>
+        <input type="date" id="end" max="2016-01-31"><br><br>
+      End Date:<br>
+        <input type="date" id="end" max="2016-01-31"><br><br>
+        <button type="button" onclick="addTask()"></button>
+      </form>
       <section>
         <p align="center">Made by: </p>
         <p align="center">Amelie Haase</p>

@@ -87,7 +87,7 @@ app.post('/calendar', function (req, res) {
     
     
     //send the created table to the client side
-    res.send(stringToSave);
+    res.send();
    
 });
 
