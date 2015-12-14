@@ -40,7 +40,7 @@ app.post('/calendar', function (req, res) {
     console.log(numDays);
     
     //create array of dates
-    var array_dates = getDates(datesArray[0], datesArray[1]);
+    var array_dates = getDates(parsedDate1, parsedDate2);
     
     
     
@@ -90,27 +90,19 @@ function daydiff(first, second) {
     return Math.round((second-first)/(1000*60*60*24));
 }
 
-function getDates(startDate, stopDate, range) {
-    var dateArray = new Array();
-    var currentDate = startDate;
-    
-    Date.prototype.addDays = function(days) {
+
+Date.prototype.addDays = function(days) {
     var dat = new Date(this.valueOf())
     dat.setDate(dat.getDate() + days);
     return dat;
-    }
-
-        dateArray.push( new Date (currentDate) )
-        currentDate = currentDate.addDays(range);
-        
-    }
-    return dateArray;
 }
 
-function addDay(date){
-    var dat = new Date(date);
-    dat.setDate(date.getDate());
-    return dat;
+function getDates(startDate, stopDate) {
+    var dateArray = new Array();
+    var currentDate = startDate;
+    while (currentDate <= stopDate) {
+        dateArray.push( new Date (currentDate) )
+        currentDate = currentDate.addDays(1);
     }
-    
+    return dateArray;
 }
