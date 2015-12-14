@@ -7,6 +7,9 @@ var xml2js = require('xml2js');
 
 var port = process.env.PORT || 3000;
 
+var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
 
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -42,17 +45,32 @@ app.post('/calendar', function (req, res) {
     //create array of dates
     var array_dates = getDates(parsedDate1, parsedDate2);
     
+
     
     
     var stringToSave = ""; 
     
+    
     stringToSave += "<table>"
+    
     stringToSave += "<tr>"
     for(var j = 0; j < numDays; j++) {
-       stringToSave += "<td id='topCell_" + j + "'>"+  +"</td>"  
+       var d = "";
+       d += days[array_dates[j].getDay()] + " ";
+       d += array_dates[j].getDate() + " ";
+       d += months[array_dates[j].getMonth()];
+        
+       stringToSave += "<td id='topCell_" + j + "'>"+ d +"</td>";  
     }
-    stringToSave += "<tr>"
+    stringToSave += "</tr>"
     
+    
+    stringToSave += "</table>"
+    
+    console.log(stringToSave);  
+   
+    
+   
    
     //read table on xml file
     var parser = xml2js.Parser();
@@ -69,6 +87,7 @@ app.post('/calendar', function (req, res) {
     
     
     //send the created table to the client side
+    res.send(stringToSave);
    
 });
 

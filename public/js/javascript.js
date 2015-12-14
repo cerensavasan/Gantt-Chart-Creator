@@ -1,7 +1,7 @@
 //generating table
+
 function populate(){
   console.log("inside populate");
-  var divCal = document.getElementById('calendar');
   
   divCal.innerHTML = "Test";
   
@@ -33,6 +33,10 @@ function displayCalendar() {
           return;
 
         if(req.status === 200) {
+          var divCal = document.getElementById('calendar');
+          divCal.innerHTML = req.responseText;
+          divCal.innerHTML += "";
+         
           //populate html with the table sent from the server side
           
           //create this function below
