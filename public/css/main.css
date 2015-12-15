@@ -1,17 +1,15 @@
 body
 {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  background:#B6F8FF;
+    background:#B6F8FF;
 }
 
 body > article
 {
   text-align: center;
 }
+form {
 
-form{
-  background: #ccffcf;
-  border-color: black;
 }
 
 h1
@@ -44,6 +42,20 @@ h2
 {
   text-align: center;
 }
+
+button{
+-webkit-border-radius:7px;
+	font-size:13px;
+	color: #6CFFCC;
+	font-weight:bold;
+	text-decoration:none;
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#000026), to(#0000AF));
+	padding:10px 20px 7px 20px;
+	-webkit-box-shadow:0px 1px 2px #999;
+	text-shadow:0px 1px 0px #6CFFCC;
+	border-bottom:1px solid #78000c;
+}
+
 table {
 margin:0px;padding:0px;
 width:100%;	box-shadow: 10px 10px 5px #888888;
