@@ -8,6 +8,11 @@ body > article
   text-align: center;
 }
 
+form{
+  background: #ccffcf;
+  border-color: black;
+}
+
 h1
 {
   margin: 10px 0;

@@ -49,11 +49,12 @@ app.post('/calendar', function (req, res) {
     
     
     var stringToSave = ""; 
-    
+ 
     
     stringToSave += "<table>"
     
     stringToSave += "<tr>"
+    stringToSave += "<td id='taskColumn'>Tasks</td>"
     for(var j = 0; j < numDays; j++) {
        var d = "";
        d += days[array_dates[j].getDay()] + " ";
@@ -87,7 +88,7 @@ app.post('/calendar', function (req, res) {
     
     
     //send the created table to the client side
-    res.send();
+    res.send(stringToSave);
    
 });
 
