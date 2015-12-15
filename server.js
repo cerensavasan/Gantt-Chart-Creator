@@ -51,7 +51,7 @@ app.post('/calendar', function (req, res) {
     var stringToSave = ""; 
  
     
-    stringToSave += "<table>"
+    stringToSave += "<table id='generatedCalendar'>"
     stringToSave += "<tr>"
     stringToSave += "<td id='taskColumn'>Tasks</td>"
     
@@ -64,6 +64,7 @@ app.post('/calendar', function (req, res) {
        stringToSave += "<td id='topCell_" + j + "'>"+ d +"</td>";  
     }
     stringToSave += "</tr>"
+    stringToSave += "<tbody></tbody>"
     stringToSave += "<tr>"
     stringToSave += "<td id='taskCreate' onclick='createTaskInp()'>+</td>";  
     for(var j = 0; j < numDays+1; j++) {
@@ -89,8 +90,16 @@ app.post('/calendar', function (req, res) {
     
     //send the created table to the client side
     res.send(stringToSave);
-   
 });
+
+app.post('/tasking', function (req, res) {
+    console.log('inside tasking');
+    var taskToAdd = "";
+    var dataReceived = req.body.taskData;
+    console.log("Data received is: " + dataReceived);
+    res.send(taskToAdd);
+});
+
 
 app.listen(port, function () {
     console.log('App is listening on port ' + port);

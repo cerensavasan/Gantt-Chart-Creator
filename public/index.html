@@ -25,9 +25,13 @@
       Task Name:<br>
         <input type="text" id="taskNameInp"><br><br>
       Start Date:<br>
-        <input type="date" id="taskStartInp" max="2016-01-31"><br><br>
+        <input type="date" id="taskStartInp" min="2015-12-01" max="2016-01-31"><br><br>
       End Date:<br>
-        <input type="date" id="taskEndInp" max="2016-01-31"><br><br>
+        <input type="date" id="taskEndInp" min="2015-12-01" max="2016-01-31"><br><br>
+      Details:<br>
+        <input type="text" id="taskDetailsInp"><br><br>
+      Members Assigned:<br>
+        <input type="text" id="taskMembersInp"><br><br>
         <button type="button" onclick="createTask()">Add Task</button>
       </form>
       <section>
