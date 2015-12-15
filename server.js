@@ -64,13 +64,16 @@ app.post('/calendar', function (req, res) {
        stringToSave += "<td id='topCell_" + j + "'>"+ d +"</td>";  
     }
     stringToSave += "</tr>"
-    
-    
+    stringToSave += "<tr>"
+    stringToSave += "<td id='taskCreate' onclick='createTaskButt()'>+</td>";  
+    for(var j = 0; j < numDays; j++) {
+       stringToSave += "<td id='secondCell_" + j + "'></td>";  
+    }  
+    stringToSave += "</tr>"  
     stringToSave += "</table>"
     
     console.log(stringToSave);  
    
-    
    
    
     //read table on xml file
