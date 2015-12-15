@@ -55,7 +55,7 @@ app.post('/calendar', function (req, res) {
     stringToSave += "<tr>"
     stringToSave += "<td id='taskColumn'>Tasks</td>"
     
-    for(var j = 0; j < numDays; j++) {
+    for(var j = 0; j < numDays+1; j++) {
        var d = "";
        d += days[array_dates[j].getDay()] + " ";
        d += array_dates[j].getDate() + " ";
@@ -66,7 +66,7 @@ app.post('/calendar', function (req, res) {
     stringToSave += "</tr>"
     stringToSave += "<tr>"
     stringToSave += "<td id='taskCreate' onclick='createTaskInp()'>+</td>";  
-    for(var j = 0; j < numDays; j++) {
+    for(var j = 0; j < numDays+1; j++) {
        stringToSave += "<td id='secondCell_" + j + "'></td>";  
     }
       

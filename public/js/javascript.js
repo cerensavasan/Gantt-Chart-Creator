@@ -89,5 +89,7 @@ function createTask() {
 
 
 function createTaskInp(){
-  document.getElementById("addTaskForm").setAttribute("hidden", "visible");
+  console.log("About to reveal hidden task form");
+  document.getElementById("addTaskForm").hidden = false;
+  console.log("APPEARED");
 }
