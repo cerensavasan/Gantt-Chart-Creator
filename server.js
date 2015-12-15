@@ -40,7 +40,7 @@ app.post('/calendar', function (req, res) {
     console.log("The parsed date 2 contains: " + parsedDate2);
     
     var numDays = daydiff(parsedDate1, parsedDate2);
-    if (numDays > 14) {
+    if (numDays > 21) {
         res.send("DayConstraint");  
         return;    
     }

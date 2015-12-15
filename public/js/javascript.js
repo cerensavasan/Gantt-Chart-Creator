@@ -34,15 +34,12 @@ function displayCalendar() {
 
         if(req.status === 200) {
           if(req.responseText == "DayConstraint"){
-            alert ("Only 14 days allowed. Please try agains");
+            alert ("Only 14 days allowed. Please try again");
           } else {
             var divCal = document.getElementById('calendar');
             divCal.innerHTML = req.responseText;
             divCal.innerHTML += "";
           }
-          var divCal = document.getElementById('calendar');
-          divCal.innerHTML = req.responseText;
-          divCal.innerHTML += "";
         }
       
     }
