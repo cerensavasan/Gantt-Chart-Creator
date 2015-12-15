@@ -33,9 +33,15 @@ function displayCalendar() {
           return;
 
         if(req.status === 200) {
-          var divCal = document.getElementById('calendar');
-          divCal.innerHTML = req.responseText;
-          divCal.innerHTML += "";
+          
+          if(req.responseText == "DayConstraint"){
+            alert ("Only 14 days allowed. Please try agains");
+          } else {
+            var divCal = document.getElementById('calendar');
+            divCal.innerHTML = req.responseText;
+            divCal.innerHTML += "";
+          }
+
          
           //populate html with the table sent from the server side
           

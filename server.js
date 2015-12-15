@@ -40,21 +40,21 @@ app.post('/calendar', function (req, res) {
     console.log("The parsed date 2 contains: " + parsedDate2);
     
     var numDays = daydiff(parsedDate1, parsedDate2);
+    if (numDays > 14) {
+        res.send("DayConstraint");  
+        return;    
+    }
     console.log(numDays);
     
     //create array of dates
-    var array_dates = getDates(parsedDate1, parsedDate2);
-    
-
-    
-    
+    var array_dates = getDates(parsedDate1, parsedDate2); 
     var stringToSave = ""; 
  
     
     stringToSave += "<table>"
-    
     stringToSave += "<tr>"
     stringToSave += "<td id='taskColumn'>Tasks</td>"
+    
     for(var j = 0; j < numDays; j++) {
        var d = "";
        d += days[array_dates[j].getDay()] + " ";
@@ -66,29 +66,27 @@ app.post('/calendar', function (req, res) {
     stringToSave += "</tr>"
     stringToSave += "<tr>"
     stringToSave += "<td id='taskCreate' onclick='createTaskButt()'>+</td>";  
+    
     for(var j = 0; j < numDays; j++) {
        stringToSave += "<td id='secondCell_" + j + "'></td>";  
-    }  
+    }
+      
     stringToSave += "</tr>"  
     stringToSave += "</table>"
     
     console.log(stringToSave);  
-   
-   
-   
+     
     //read table on xml file
     var parser = xml2js.Parser();
     var loadedXML = fs.readFileSync('table.xml').toString().trim();
     parser.parseString(loadedXML, function (err, data) {
     console.log(data);
     });
-    
-    
+       
     var processedXML;
     
     //write the table to the xml file
     fs.writeFileSync('table.xml', processedXML);
-    
     
     //send the created table to the client side
     res.send(stringToSave);
