@@ -51,3 +51,7 @@ function displayCalendar() {
     req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     req.send("dates=" + dates);
 }
+
+function createTaskButt() {
+  console.log("Someone clicked the +");
+}
