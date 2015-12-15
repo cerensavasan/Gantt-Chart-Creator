@@ -65,8 +65,7 @@ app.post('/calendar', function (req, res) {
     }
     stringToSave += "</tr>"
     stringToSave += "<tr>"
-    stringToSave += "<td id='taskCreate' onclick='createTaskButt()'>+</td>";  
-    
+    stringToSave += "<td id='taskCreate' onclick='createTaskInp()'>+</td>";  
     for(var j = 0; j < numDays; j++) {
        stringToSave += "<td id='secondCell_" + j + "'></td>";  
     }
