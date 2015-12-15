@@ -21,14 +21,14 @@
         <button type="button" onclick="displayCalendar()">Generate Calendar</button>
       </form>
       <div id='calendar'> </div><br>
-      <form class="addTaskForm">
+      <form class="addTaskForm" hidden>
       Task Name:<br>
-        <input type="text" id="taskName"><br><br>
+        <input type="text" id="taskNameInp"><br><br>
       Start Date:<br>
-        <input type="date" id="end" max="2016-01-31"><br><br>
+        <input type="date" id="taskStartInp" max="2016-01-31"><br><br>
       End Date:<br>
-        <input type="date" id="end" max="2016-01-31"><br><br>
-        <button type="button" onclick="addTask()">Add Task</button>
+        <input type="date" id="taskEndInp" max="2016-01-31"><br><br>
+        <button type="button" onclick="createTask()">Add Task</button>
       </form>
       <section>
         <p align="center">Made by: </p>

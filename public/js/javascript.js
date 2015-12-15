@@ -36,6 +36,36 @@ function displayCalendar() {
           var divCal = document.getElementById('calendar');
           divCal.innerHTML = req.responseText;
           divCal.innerHTML += "";
+        }
+      
+    }
+    
+    req.open('POST', '/calendar', true);
+    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    req.send("dates=" + dates);
+}
+
+function createTask() {
+  console.log("Someone clicked the +");
+  var nameTask = document.getElementById('taskNameInp');
+  var startTask = document.getElementById('taskStartInp');
+  var endTask = document.getElementById('taskEndInp');
+  
+  console.log("Task Name received: " + nameTask.value);
+  console.log("Task Start Date received: " + startTask.value);
+  console.log("Task End Date received: " + endTask.value);
+  /*
+  var req = new XMLHttpRequest();
+  
+  req.onreadystatechange = function() {
+    
+        if( req.readyState !== XMLHttpRequest.DONE )
+          return;
+
+        if(req.status === 200) {
+          var divCal = document.getElementById('calendar');
+          divCal.innerHTML = req.responseText;
+          divCal.innerHTML += "";
          
           //populate html with the table sent from the server side
           
@@ -50,8 +80,10 @@ function displayCalendar() {
     req.open('POST', '/calendar', true);
     req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     req.send("dates=" + dates);
+    */
 }
 
-function createTaskButt() {
-  console.log("Someone clicked the +");
+
+function createTaskInp(){
+  document.getElementById("addTaskForm").setAttribute("hidden", "visible");
 }
