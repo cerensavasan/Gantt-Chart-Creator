@@ -69,6 +69,7 @@ function createTask() {
     if(req.status === 200) {
       receivedIdentifiers = req.responseText;
       var dateIdentifiers = receivedIdentifiers.split(',');
+      dateIdentifiers.pop();
       changeCellColors(dateIdentifiers);
     }
   }
@@ -87,27 +88,29 @@ function changeCellColors(identifiers){
   //trim the first row headers to match with identifiers later
   for(var k=1; k < numOfColumns; k++ ){
     firstRowContains[k] = document.getElementById("generatedCalendar").rows[0].cells[k].innerHTML; 
-    console.log("First row contains following dates: " + firstRowContains[k]);
+    //parse the first row elements to match the format of the identifiers: "8 Jan" instead of "Sat, 8 Jan"
     var res1 = firstRowContains[k].split(",");
-    console.log("Printing res 1: " , res1, typeof res1);
     var res2 = res1[1].trim();
-    console.log("Printing res 2: " , res2, typeof res2);
     firstRowContainsTrimmed[k] = res2;
   }
   
+  //prototype method does not exist in chrome..... boo
   if (!String.prototype.contains) {
     String.prototype.contains = function(s) {
         return this.indexOf(s) > -1
     }
   }
+  
   //check to find identifiers matching the dates on calendar
   for(var l=1; l < firstRowContainsTrimmed.length; l++ ){
+    console.log("l is: ", l);
     for(var p=0; p < identifiers.length; p++){
+      console.log("p is: ", p, " and index of p being used is: " ,identifiers[p]);
       console.log("Comparing following strings now: " + firstRowContainsTrimmed[l] + " and " + identifiers[p]);
       var doesIt = firstRowContainsTrimmed[l].contains(identifiers[p]);
       if(doesIt === true){
         console.log("omg found a date match, switching to red");
-        document.getElementById("generatedCalendar").rows[myTable.rows.length-1].cells[l].style.background = "red";
+        document.getElementById("generatedCalendar").rows[myTable.rows.length-1].cells[l].style.background = "skyblue";
       }
     }
   }
