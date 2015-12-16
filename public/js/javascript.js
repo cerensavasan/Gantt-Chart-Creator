@@ -17,7 +17,7 @@ function displayCalendar() {
 
         if(req.status === 200) {
           if(req.responseText == "DayConstraint"){
-            alert ("Only 14 days allowed. Please try again");
+            alert ("Only 21 days allowed. Please try again");
           } else {
             var divCal = document.getElementById('calendar');
             divCal.innerHTML = req.responseText;
@@ -34,6 +34,7 @@ function displayCalendar() {
 
 //submitted form to create task
 function createTask() {
+  
   console.log("Someone clicked the +");
   var nameTask = document.getElementById('taskNameInp');
   var startTask = document.getElementById('taskStartInp');
@@ -46,29 +47,65 @@ function createTask() {
   console.log("Task End Date received: " + endTask.value);
   console.log("Task Start Date received: " + detailsTask.value);
   console.log("Task End Date received: " + membersTask.value);
+
+  var myTable = document.getElementById("generatedCalendar");
+  // add new row at the bottom-1 position
+  var row = myTable.insertRow(myTable.rows.length);
+  var newCells = [];
+  var numColumns = myTable.rows[0].cells.length;
+  console.log("We have this many columns: " + numColumns);
+  // Insert new cells
+  for(var j = 0; j < numColumns; j++) {
+    newCells[j] = row.insertCell(0);
+    console.log("created cell");
+  }
+
+  //first cell is name of task
+  newCells[numColumns-1].innerHTML = nameTask.value;
   
-  var toSend = "";
-  toSend += nameTask.value + "," + startTask.value + "," + endTask.value + "," + detailsTask.value + "," +  membersTask.value;
-  console.log("Data about task I'm sending: " + toSend);
-  
+  //finding the dates of task and coloring those cells
+  var receivedIdentifiers = "";
+  var taskDates = startTask.value + "," + endTask.value;
+  console.log("Task dates I'm sending: " + taskDates);
   var req = new XMLHttpRequest();
-  
-  req.onreadystatechange = function() { 
-    if( req.readyState !== XMLHttpRequest.DONE){
-      return;
-        }
-        
-        if(req.status === 200) {
-          console.log("is it already creating a task?");
-          $("#generatedCalendar").find('tbody').append($('<tr>'));
-          $("#generatedCalendar").find('tbody').append($('<td></td>'));
-          $("#generatedCalendar").find('tbody').append($('</tr>'));         
-        }
+  req.onreadystatechange = function() {
+    if( req.readyState !== XMLHttpRequest.DONE )
+     return;
+
+    if(req.status === 200) {
+      receivedIdentifiers = req.responseText;
+      console.log("Inside createTask I received: ", receivedIdentifiers);
+      var dateIdentifiers = receivedIdentifiers.split(',');
+      changeCellColors(dateIdentifiers);
     }
-    
-    req.open('POST', '/tasking', true);
-    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    req.send("taskData=" + toSend);
+  }
+ 
+  req.open('POST', '/getIdentifiers', true);
+  req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  req.send("taskdates=" + taskDates);
+}
+
+function changeCellColors(identifiers){
+  var myTable = document.getElementById("generatedCalendar");
+  var firstRowCells = myTable.rows[0].cells;
+  var firstRowContains = [];
+  console.log("testing cell text acquire: " , firstRowCells[1].innerhtml);
+  
+  for(var k=0; k < firstRowCells.length; k++ ){
+    firstRowContains[k] = firstRowCells[k].innerhtml; 
+    console.log("First row contains following dates: " + firstRowContains[k]);
+  }
+  
+  for(var l=0; l < firstRowContains.length; l++ ){
+    for(var p=0; p < identifiers.length; p++){
+      console.log("Comparing following strings now: " + firstRowContains[l] + " and " + identifiers[p]);
+      var n = firstRowContains.indexOf(identifiers[p]);
+      if(n>-1){
+        console.log("omg found a date match, switching to red");
+        firstRowCells[l].style.backgroundColor = "red";
+      }
+    }
+  }
 }
 
 //reveal task form when + is clicked

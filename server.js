@@ -54,14 +54,14 @@ app.post('/calendar', function (req, res) {
     stringToSave += "<table id='generatedCalendar'>"
     stringToSave += "<tr>"
     stringToSave += "<td id='taskColumn'>Tasks</td>"
-    
     for(var j = 0; j < numDays+1; j++) {
        var d = "";
-       d += days[array_dates[j].getDay()] + " ";
+       var monthday = "";
+       d += days[array_dates[j].getDay()] + ", ";
        d += array_dates[j].getDate() + " ";
        d += months[array_dates[j].getMonth()];
-        
-       stringToSave += "<td id='topCell_" + j + "'>"+ d +"</td>";  
+       monthday = d;
+       stringToSave += "<td id='" + monthday + "'>"+ d +"</td>";  
     }
     stringToSave += "</tr>"
     stringToSave += "<tbody></tbody>"
@@ -101,6 +101,32 @@ app.post('/tasking', function (req, res) {
 });
 
 
+app.post('/getIdentifiers', function (req, res) {
+    console.log('inside identifiers');
+    var task_dates = req.body.taskdates;
+    console.log("Task dates received is: " + task_dates);
+    var taskDatesArray = task_dates.split(',');
+    var parsedTaskDate1 = parseDate(taskDatesArray[0]);
+    var parsedTaskDate2 = parseDate(taskDatesArray[1]);
+    //create array of dates and identifier strings
+    var array_dates = getDates(parsedTaskDate1, parsedTaskDate2); 
+    var dateIdentifiers = [];
+    
+    for(var i = 0; i < array_dates.length; i++) {
+        dateIdentifiers[i] = array_dates[i].getDate() + " " + months[array_dates[i].getMonth()];
+        console.log("Date identifier array added: " + dateIdentifiers[i]);
+    }
+    
+    var toSend = "";
+    dateIdentifiers.forEach( function(p) {
+      toSend += p;
+      toSend += ",";
+    });
+    
+    res.send(toSend);
+});
+
+
 app.listen(port, function () {
     console.log('App is listening on port ' + port);
 });
@@ -114,7 +140,7 @@ function parseDate(str) {
     
     var dateObj = new Date(year, month, day);
     console.log (dateObj);
-    return dateObj
+    return dateObj;
 }
 
 function daydiff(first, second) {
