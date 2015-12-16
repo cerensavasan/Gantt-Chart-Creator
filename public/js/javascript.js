@@ -89,7 +89,7 @@ function changeCellColors(identifiers){
   var myTable = document.getElementById("generatedCalendar");
   var firstRowCells = myTable.rows[0].cells;
   var firstRowContains = [];
-  console.log("testing cell text acquire: " , firstRowCells[1].innerhtml);
+  console.log("testing cell text acquire: " , myTable.rows[0].cells[0].innerhtml);
   
   for(var k=0; k < firstRowCells.length; k++ ){
     firstRowContains[k] = firstRowCells[k].innerhtml; 
