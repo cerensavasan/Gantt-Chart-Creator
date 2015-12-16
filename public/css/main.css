@@ -8,9 +8,6 @@ body > article
 {
   text-align: center;
 }
-form {
-
-}
 
 h1
 {
@@ -44,7 +41,7 @@ h2
 }
 
 button{
--webkit-border-radius:7px;
+	-webkit-border-radius:7px;
 	font-size:13px;
 	color: #6CFFCC;
 	font-weight:bold;

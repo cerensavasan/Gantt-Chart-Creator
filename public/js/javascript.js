@@ -34,30 +34,25 @@ function displayCalendar() {
 
 //submitted form to create task
 function createTask() {
-  
+  //get the form input
   console.log("Someone clicked the +");
   var nameTask = document.getElementById('taskNameInp');
   var startTask = document.getElementById('taskStartInp');
   var endTask = document.getElementById('taskEndInp');
+  
+  
+  //TO DO I AM NOT YET HANDLING THESE TWO
   var detailsTask = document.getElementById('taskDetailsInp');
   var membersTask = document.getElementById('taskMembersInp');
-  
-  console.log("Task Name received: " + nameTask.value);
-  console.log("Task Start Date received: " + startTask.value);
-  console.log("Task End Date received: " + endTask.value);
-  console.log("Task Start Date received: " + detailsTask.value);
-  console.log("Task End Date received: " + membersTask.value);
 
   var myTable = document.getElementById("generatedCalendar");
   // add new row at the bottom-1 position
   var row = myTable.insertRow(myTable.rows.length);
   var newCells = [];
   var numColumns = myTable.rows[0].cells.length;
-  console.log("We have this many columns: " + numColumns);
   // Insert new cells
   for(var j = 0; j < numColumns; j++) {
     newCells[j] = row.insertCell(0);
-    console.log("created cell");
   }
 
   //first cell is name of task
@@ -66,7 +61,6 @@ function createTask() {
   //finding the dates of task and coloring those cells
   var receivedIdentifiers = "";
   var taskDates = startTask.value + "," + endTask.value;
-  console.log("Task dates I'm sending: " + taskDates);
   var req = new XMLHttpRequest();
   req.onreadystatechange = function() {
     if( req.readyState !== XMLHttpRequest.DONE )
@@ -74,7 +68,6 @@ function createTask() {
 
     if(req.status === 200) {
       receivedIdentifiers = req.responseText;
-      console.log("Inside createTask I received: ", receivedIdentifiers);
       var dateIdentifiers = receivedIdentifiers.split(',');
       changeCellColors(dateIdentifiers);
     }
@@ -87,22 +80,34 @@ function createTask() {
 
 function changeCellColors(identifiers){
   var myTable = document.getElementById("generatedCalendar");
-  var firstRowCells = myTable.rows[0].cells;
   var firstRowContains = [];
-  console.log("testing cell text acquire: " , myTable.rows[0].cells[0].innerhtml);
+  var firstRowContainsTrimmed = [];
+  var numOfColumns = document.getElementById("generatedCalendar").rows[0].cells.length;
   
-  for(var k=0; k < firstRowCells.length; k++ ){
-    firstRowContains[k] = firstRowCells[k].innerhtml; 
+  //trim the first row headers to match with identifiers later
+  for(var k=1; k < numOfColumns; k++ ){
+    firstRowContains[k] = document.getElementById("generatedCalendar").rows[0].cells[k].innerHTML; 
     console.log("First row contains following dates: " + firstRowContains[k]);
+    var res1 = firstRowContains[k].split(",");
+    console.log("Printing res 1: " , res1, typeof res1);
+    var res2 = res1[1].trim();
+    console.log("Printing res 2: " , res2, typeof res2);
+    firstRowContainsTrimmed[k] = res2;
   }
   
-  for(var l=0; l < firstRowContains.length; l++ ){
+  if (!String.prototype.contains) {
+    String.prototype.contains = function(s) {
+        return this.indexOf(s) > -1
+    }
+  }
+  //check to find identifiers matching the dates on calendar
+  for(var l=1; l < firstRowContainsTrimmed.length; l++ ){
     for(var p=0; p < identifiers.length; p++){
-      console.log("Comparing following strings now: " + firstRowContains[l] + " and " + identifiers[p]);
-      var n = firstRowContains.indexOf(identifiers[p]);
-      if(n>-1){
+      console.log("Comparing following strings now: " + firstRowContainsTrimmed[l] + " and " + identifiers[p]);
+      var doesIt = firstRowContainsTrimmed[l].contains(identifiers[p]);
+      if(doesIt === true){
         console.log("omg found a date match, switching to red");
-        firstRowCells[l].style.backgroundColor = "red";
+        document.getElementById("generatedCalendar").rows[myTable.rows.length-1].cells[l].style.background = "red";
       }
     }
   }
