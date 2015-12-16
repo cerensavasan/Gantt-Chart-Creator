@@ -8,7 +8,7 @@ var xml2js = require('xml2js');
 var port = process.env.PORT || 3000;
 
 var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+var months = ['Dec','Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov'];
 
 
 app.use(express.static(path.join(__dirname, '/public')));
