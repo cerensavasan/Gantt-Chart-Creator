@@ -8,5 +8,5 @@ TODO BEFORE SUBMITTING
 - Tasks are not saved to the server (no persistence)
 - Reloading the page after creating a task creates an error
 - URL persistence not done yet
-- assign random shade of blue and green and orange to tasks
+- make sure random shades of colors match background
 - Shouldnt be able to generate table if the dates are not entered

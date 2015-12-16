@@ -13,21 +13,21 @@
       <header>
         <h1>Gantt Chart Creator</h1>
       </header>
-      <form>
+      <form id="calForm">
         Enter Start Date:<br>
-        <input type="date" id="start" min="2015-12-01"><br><br>
+        <input type="date" required name="calStartDate" id="start" min="2015-12-01"/><br><br>
         Enter End Date:<br>
-        <input type="date" id="end" max="2016-01-31"><br><br>
+        <input type="date" required name="calEndDate" id="end" max="2016-01-31"/><br><br>
         <button type="button" onclick="displayCalendar()">Generate Calendar</button>
       </form>
       <div id='calendar'> </div><br>
       <form id="addTaskForm" hidden>
       Task Name:<br>
-        <input type="text" id="taskNameInp"><br><br>
+        <input type="text" id="taskNameInp" required><br><br>
       Start Date:<br>
-        <input type="date" id="taskStartInp" min="2015-12-01" max="2016-01-31"><br><br>
+        <input type="date" id="taskStartInp" min="2015-12-01" max="2016-01-31" required><br><br>
       End Date:<br>
-        <input type="date" id="taskEndInp" min="2015-12-01" max="2016-01-31"><br><br>
+        <input type="date" id="taskEndInp" min="2015-12-01" max="2016-01-31" required><br><br>
       Details:<br>
         <input type="text" id="taskDetailsInp"><br><br>
       Members Assigned:<br>

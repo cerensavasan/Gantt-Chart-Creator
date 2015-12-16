@@ -1,5 +1,18 @@
 //generating table  
 function displayCalendar() {
+  var proceed = false;
+  var f = document.getElementById('calForm')[0];
+  var g = document.getElementById('calForm')[1];
+  if(f.checkValidity()) {
+    if(g.checkValidity()) {
+       proceed = true;
+  } else {
+    alert("You must input two dates to be able to generate a calendar");
+  }
+}
+
+if(proceed === true){
+  
   var date1 = document.getElementById('start');
   var date2 = document.getElementById('end');
   console.log("Date 1 received: " + date1);
@@ -30,6 +43,7 @@ function displayCalendar() {
     req.open('POST', '/calendar', true);
     req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     req.send("dates=" + dates);
+  }
 }
 
 //submitted form to create task
