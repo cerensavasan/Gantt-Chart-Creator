@@ -8,3 +8,5 @@ TODO BEFORE SUBMITTING
 - Tasks are not saved to the server (no persistence)
 - Reloading the page after creating a task creates an error - MAKE SURE YOU FIX persistence
 - URL persistence not done yet
+- Task dates must be a range between each other
+- It shows Jan instead of Dec
