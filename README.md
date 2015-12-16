@@ -10,4 +10,3 @@ TODO BEFORE SUBMITTING
 - URL persistence not done yet
 - assign random shade of blue and green and orange to tasks
 - Shouldnt be able to generate table if the dates are not entered
-- Task form dates max & min must be set to what the calendar is
