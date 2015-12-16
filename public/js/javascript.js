@@ -1,17 +1,18 @@
 //generating table  
 function displayCalendar() {
-  var proceed = false;
-  var f = document.getElementById('calForm')[0];
-  var g = document.getElementById('calForm')[1];
-  if(f.checkValidity()) {
-    if(g.checkValidity()) {
-       proceed = true;
-  } else {
-    alert("You must input two dates to be able to generate a calendar");
+  var f = document.getElementById('start').value;
+  var g = document.getElementById('end').value;
+  var validF = moment(f).isValid();
+  var validG = moment(g).isValid();
+  console.log("f is: " , f , validF);
+  console.log("g is: " , g , validG);
+  
+  if(validF === false || validG === false){
+    window.alert("Please input both dates to create a Gantt chart.");
   }
-}
-
-if(proceed === true){
+  
+  
+if(validF === true && validG === true){
   
   var date1 = document.getElementById('start');
   var date2 = document.getElementById('end');
@@ -49,24 +50,24 @@ if(proceed === true){
 //submitted form to create task
 function createTask() { 
   //TO DO I AM NOT YET HANDLING THESE TWO
-  var proceed = false;
-  var n = document.getElementById('addTaskForm')[0];
-  var s = document.getElementById('addTaskForm')[1];
-  var e = document.getElementById('addTaskForm')[2];
+  var n = document.getElementById('taskNameInp').value;
+  var s = document.getElementById('taskStartInp').value;
+  var e = document.getElementById('taskEndInp').value;
+  
+  var validS = moment(s).isValid();
+  var validE = moment(e).isValid();
+  console.log("s is: " , s , validS);
+  console.log("e is: " , e , validE);
+  
+  if(validS === false || validE === false){
+    window.alert("Please input both dates to create a task.");
+  }
+  
+  
+if(validS === true && validE === true){
   var nameTask = document.getElementById('taskNameInp');
   var startTask = document.getElementById('taskStartInp');
   var endTask = document.getElementById('taskEndInp');
-
-  if(n.checkValidity()) {
-    if(s.checkValidity()) {
-      if(e.checkValidity()) {
-       console.log("checked validity, checks out.");
-       proceed = true;
-  }}} else {
-    alert("You must fill the name, start and end dates");
-  }
-  
-  if(proceed === true){
   var detailsTask = document.getElementById('taskDetailsInp');
   var membersTask = document.getElementById('taskMembersInp');
 

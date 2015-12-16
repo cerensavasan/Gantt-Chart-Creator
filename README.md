@@ -10,3 +10,4 @@ TODO BEFORE SUBMITTING
 - URL persistence not done yet
 - Task dates must be a range between each other
 - It shows Jan instead of Dec
+- Check that name of task inputted is not empty string (use trim)
