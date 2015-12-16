@@ -131,7 +131,16 @@ function generateColor(){
 
 //reveal task form when + is clicked
 function createTaskInp(){
-  console.log("About to reveal hidden task form");
+  //these are the start and end dates of the calendar
+  var date1 = document.getElementById('start').value;
+  var date2 = document.getElementById('end').value;
+  
+  //adjust the dates of task to be created to between the dates on calendar that was generated
+  document.getElementById("taskStartInp").setAttribute("min", date1);
+  document.getElementById("taskStartInp").setAttribute("max", date2);
+  document.getElementById("taskEndInp").setAttribute("min", date1);
+  document.getElementById("taskEndInp").setAttribute("max", date2);
+  
+  //reveal add task form
   document.getElementById("addTaskForm").hidden = false;
-  console.log("APPEARED");
 }
