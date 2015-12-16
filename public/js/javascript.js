@@ -47,15 +47,26 @@ if(proceed === true){
 }
 
 //submitted form to create task
-function createTask() {
-  //get the form input
-  console.log("Someone clicked the +");
+function createTask() { 
+  //TO DO I AM NOT YET HANDLING THESE TWO
+  var proceed = false;
+  var n = document.getElementById('addTaskForm')[0];
+  var s = document.getElementById('addTaskForm')[1];
+  var e = document.getElementById('addTaskForm')[2];
   var nameTask = document.getElementById('taskNameInp');
   var startTask = document.getElementById('taskStartInp');
   var endTask = document.getElementById('taskEndInp');
+
+  if(n.checkValidity()) {
+    if(s.checkValidity()) {
+      if(e.checkValidity()) {
+       console.log("checked validity, checks out.");
+       proceed = true;
+  }}} else {
+    alert("You must fill the name, start and end dates");
+  }
   
-  
-  //TO DO I AM NOT YET HANDLING THESE TWO
+  if(proceed === true){
   var detailsTask = document.getElementById('taskDetailsInp');
   var membersTask = document.getElementById('taskMembersInp');
 
@@ -92,6 +103,7 @@ function createTask() {
   req.open('POST', '/getIdentifiers', true);
   req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   req.send("taskdates=" + taskDates);
+  }
 }
 
 function changeCellColors(identifiers){
@@ -132,12 +144,16 @@ function changeCellColors(identifiers){
 }
 
 function generateColor(){
-  var max = 150;
-  var min = 100;
-  var red = "rgb(" + (Math.floor(Math.random() * (max - min + 1)) + min).toString() +",0,0)";
-  var green = "rgb(0," + (Math.floor(Math.random() * (max - min + 1)) + min).toString() + ",0)";
-  var blue = "rgb(0, 0," + (Math.floor(Math.random() * (max - min + 1)) + min).toString() + ")";
-  var colorArray = [red,green,blue];
+  var colorArray = ["rgb(81, 40, 79)", 
+                "rgb(81, 47, 46)",
+                "rgb(31, 42, 68)",
+                "rgb(69, 53, 54)", // up to here is purples
+                "rgb(157, 67, 44)",
+                "rgb(139, 71, 32)",
+                "rgb(138, 57, 27)",
+                "rgb(153, 85, 43)",
+                "#F8B97A" //up to here is oranges
+                ]
   var rand = colorArray[Math.floor(Math.random() * colorArray.length)];
   console.log("random color", rand);
   return rand;

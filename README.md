@@ -6,7 +6,5 @@ TODO BEFORE SUBMITTING
 - Details and members assigned are not being handled
 - Clicking on the task does not show the details
 - Tasks are not saved to the server (no persistence)
-- Reloading the page after creating a task creates an error
+- Reloading the page after creating a task creates an error - MAKE SURE YOU FIX persistence
 - URL persistence not done yet
-- make sure random shades of colors match background
-- Shouldnt be able to generate table if the dates are not entered
