@@ -45,13 +45,13 @@ h2
 button{
 	-webkit-border-radius:7px;
 	font-size:13px;
-	color: #6CFFCC;
+	color: black;
 	font-weight:bold;
 	text-decoration:none;
-	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#000026), to(#0000AF));
+	background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#BB4E0E), to(#FEFCC9));
 	padding:10px 20px 7px 20px;
 	-webkit-box-shadow:0px 1px 2px #999;
-	text-shadow:0px 1px 0px #6CFFCC;
+	text-shadow:0px 1px 0px grey;
 	border-bottom:1px solid #78000c;
 }
 
@@ -124,15 +124,15 @@ table tr:last-child td:last-child{
 border-width:0px 0px 0px 0px;
 }
 table tr:first-child td{
-background: #060B70;
-background-color:#060B70;
+background: black;
+background-color:black;
 border:0px solid #ffffff;
 text-align:center;
 border-width:0px 0px 1px 1px;
 font-size:14px;
 font-family:Arial;
 font-weight:bold;
-color:#C0FFEA;
+color:white;
 }
 .taskName:hover{
 	background:-o-linear-gradient(bottom, #cccccc 5%, #b2b2b2 100%); background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cccccc), color-stop(1, #b2b2b2) );	background:-moz-linear-gradient( center top, #cccccc 5%, #b2b2b2 100% );	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#cccccc", endColorstr="#b2b2b2");	background: -o-linear-gradient(top,#cccccc,b2b2b2);
@@ -146,8 +146,8 @@ color:#C0FFEA;
 }
 
 #taskCreate{
-background: #06706b;
-background-color:#06706b;
+background: #593F52;
+background-color:#593F52;
 border:0px solid #ffffff;
 text-align:center;
 border-width:0px 0px 1px 1px;
