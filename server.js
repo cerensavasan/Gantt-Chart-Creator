@@ -10,6 +10,11 @@ var port = process.env.PORT || 3000;
 var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 var months = ['Dec','Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov'];
 
+ var tasks =
+ fs.readFileSync('tasks.txt')
+      .toString()
+      .trim()
+	  .split("/r/n");
 
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -26,6 +31,23 @@ app.get('/', function (req, res) {
     console.log('sendfile get is working');
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
+//adds the new task to the text file and sends the whole text file to the client
+app.post('/getContent', function (req, res) {
+var add = req.body.newTask;
+console.log("new task string is : " + req.body.newTask);
+console.log(tasks);
+tasks.push(add);
+fs.writeFileSync('tasks.txt', tasks.join('\r\n'));
+console.log(tasks);
+res.send(JSON.stringify(tasks));
+});
+//dont need that
+app.post('/sendTask', function (req, res) {
+console.log("in post list");
+res.send(JSON.stringify(tasks));
+
+});
+
 
 app.post('/calendar', function (req, res) {
     var datesReceived = req.body.dates;

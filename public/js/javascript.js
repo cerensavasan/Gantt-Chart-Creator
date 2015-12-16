@@ -1,4 +1,6 @@
 //generating table  
+var tasksContent ="";
+
 function displayCalendar() {
   var f = document.getElementById('start').value;
   var g = document.getElementById('end').value;
@@ -47,8 +49,35 @@ if(validF === true && validG === true){
   }
 }
 
+
+function giveTask(num){
+if (num ===0){
+console.log("IT WORKED!!!!!!!!!!!!!!! NUMBER 0");
+}
+
+if (num ===1){
+console.log("IT WORKED!!!!!!!!!!!!!!! NUMBER 1");
+}
+
+console.log(num);
+
+ buildList(JSON.parse(tasksContent), num);
+}
+//searches the right row in the text file (where the right content is)
+function buildList( A , num) {
+  var el = document.getElementById('showTask');
+  el.innerHTML = "";
+  for(var j = 0; j <= num ; j++) {
+  if (num === j){
+    el.innerHTML += '<p class ="">' + A[j] + '</p>';
+	}
+  }
+  }
+//counter gives every task a special number so if you click on one you know which one you clicked
+var counter = 1;
 //submitted form to create task
-function createTask() { 
+function createTask() {
+var taskString=""; 
   //TO DO I AM NOT YET HANDLING THESE TWO
   var n = document.getElementById('taskNameInp').value;
   var s = document.getElementById('taskStartInp').value;
@@ -56,6 +85,7 @@ function createTask() {
   
   var validS = moment(s).isValid();
   var validE = moment(e).isValid();
+  console.log("n is: " + n);
   console.log("s is: " , s , validS);
   console.log("e is: " , e , validE);
   
@@ -70,7 +100,31 @@ if(validS === true && validE === true){
   var endTask = document.getElementById('taskEndInp');
   var detailsTask = document.getElementById('taskDetailsInp');
   var membersTask = document.getElementById('taskMembersInp');
+  console.log(nameTask.value);
+  console.log(detailsTask.value);
+  console.log(membersTask.value);
+  
+  taskString += nameTask.value + " " + detailsTask.value + " " + membersTask.value;
+console.log("start HTTP req für new Task");
+  var treq = new XMLHttpRequest();
+  treq.onreadystatechange = function() {
+    if( treq.readyState !== XMLHttpRequest.DONE )
+     return;
 
+    if(treq.status === 200) {
+	console.log("new task added");
+     console.log(treq.responseText); 
+	 tasksContent=treq.responseText; //recieves the new task file as a String
+    }
+  }
+  
+  treq.open('POST', '/getContent', true);
+  treq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  treq.send("newTask=" + taskString);
+  console.log("HTTP req für new Task DONE");
+  
+  
+  
   var myTable = document.getElementById("generatedCalendar");
   // add new row at the bottom-1 position
   var row = myTable.insertRow(myTable.rows.length);
@@ -82,9 +136,11 @@ if(validS === true && validE === true){
   }
 
   //first cell is name of task
+  
   newCells[numColumns-1].innerHTML = nameTask.value;
   newCells[numColumns-1].setAttribute("class", "taskName");
-  
+  newCells[numColumns-1].setAttribute("onclick", "giveTask("+ counter +")");
+  counter++;
   //finding the dates of task and coloring those cells
   var receivedIdentifiers = "";
   var taskDates = startTask.value + "," + endTask.value;
@@ -133,7 +189,7 @@ function changeCellColors(identifiers){
   //check to find identifiers matching the dates on calendar
   for(var l=1; l < firstRowContainsTrimmed.length; l++ ){
     for(var p=0; p < identifiers.length; p++){
-      console.log("Comparing following strings now: " + firstRowContainsTrimmed[l] + " and " + identifiers[p]);
+     // console.log("Comparing following strings now: " + firstRowContainsTrimmed[l] + " and " + identifiers[p]);
       var doesIt = firstRowContainsTrimmed[l].contains(identifiers[p]);
       if(doesIt === true){
         console.log("omg found a date match, switching to red");
