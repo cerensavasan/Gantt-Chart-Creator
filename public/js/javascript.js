@@ -57,6 +57,7 @@ function createTask() {
 
   //first cell is name of task
   newCells[numColumns-1].innerHTML = nameTask.value;
+  newCells[numColumns-1].setAttribute("class", "taskName");
   
   //finding the dates of task and coloring those cells
   var receivedIdentifiers = "";
@@ -100,20 +101,32 @@ function changeCellColors(identifiers){
         return this.indexOf(s) > -1
     }
   }
-  
+  //generate color for task
+  var newColor = generateColor();
   //check to find identifiers matching the dates on calendar
   for(var l=1; l < firstRowContainsTrimmed.length; l++ ){
-    console.log("l is: ", l);
     for(var p=0; p < identifiers.length; p++){
-      console.log("p is: ", p, " and index of p being used is: " ,identifiers[p]);
       console.log("Comparing following strings now: " + firstRowContainsTrimmed[l] + " and " + identifiers[p]);
       var doesIt = firstRowContainsTrimmed[l].contains(identifiers[p]);
       if(doesIt === true){
         console.log("omg found a date match, switching to red");
-        document.getElementById("generatedCalendar").rows[myTable.rows.length-1].cells[l].style.background = "skyblue";
+        document.getElementById("generatedCalendar").rows[myTable.rows.length-1].cells[l].style.background = newColor;
       }
     }
   }
+  document.getElementById("addTaskForm").hidden = true;
+}
+
+function generateColor(){
+  var max = 150;
+  var min = 100;
+  var red = "rgb(" + (Math.floor(Math.random() * (max - min + 1)) + min).toString() +",0,0)";
+  var green = "rgb(0," + (Math.floor(Math.random() * (max - min + 1)) + min).toString() + ",0)";
+  var blue = "rgb(0, 0," + (Math.floor(Math.random() * (max - min + 1)) + min).toString() + ")";
+  var colorArray = [red,green,blue];
+  var rand = colorArray[Math.floor(Math.random() * colorArray.length)];
+  console.log("random color", rand);
+  return rand;
 }
 
 //reveal task form when + is clicked
