@@ -1,5 +1,6 @@
 //generating table  
 var tasksContent ="";
+var tasksDetails = "";
 
 function displayCalendar() {
   var f = document.getElementById('start').value;
@@ -60,16 +61,18 @@ console.log("IT WORKED!!!!!!!!!!!!!!! NUMBER 1");
 }
 
 console.log(num);
-
- buildList(JSON.parse(tasksContent), num);
+console.log(document.getElementById("'"+num+"'").textContent);
+var content = document.getElementById("'"+num+"'").textContent;
+buildList(JSON.parse(tasksContent), num, content);
 }
 //searches the right row in the text file (where the right content is)
-function buildList( A , num) {
+function buildList( A , num , task) {
   var el = document.getElementById('showTask');
+  var detailArray = JSON.parse(tasksDetails);
   el.innerHTML = "";
-  for(var j = 0; j <= num ; j++) {
-  if (num === j){
-    el.innerHTML += '<p class ="">' + A[j] + '</p>';
+  for(var j = 0; j < A.length ; j++) {
+  if (task === A[j]){
+    el.innerHTML += '<p>'+ "task name: " + A[j]+ "</p> <p> " + detailArray[j]+ '</p>';
 	}
   }
   }
@@ -78,6 +81,7 @@ var counter = 1;
 //submitted form to create task
 function createTask() {
 var taskString=""; 
+var taskDetail="";
   //TO DO I AM NOT YET HANDLING THESE TWO
   var n = document.getElementById('taskNameInp').value;
   var s = document.getElementById('taskStartInp').value;
@@ -104,7 +108,8 @@ if(validS === true && validE === true){
   console.log(detailsTask.value);
   console.log(membersTask.value);
   
-  taskString += nameTask.value + " " + detailsTask.value + " " + membersTask.value;
+  taskString += nameTask.value;
+  taskDetail += "task details: "+ detailsTask.value + " </p> <p> task members: " + membersTask.value;
 console.log("start HTTP req für new Task");
   var treq = new XMLHttpRequest();
   treq.onreadystatechange = function() {
@@ -123,6 +128,23 @@ console.log("start HTTP req für new Task");
   treq.send("newTask=" + taskString);
   console.log("HTTP req für new Task DONE");
   
+  var dreq = new XMLHttpRequest();
+  dreq.onreadystatechange = function() {
+    if( dreq.readyState !== XMLHttpRequest.DONE )
+     return;
+
+    if(dreq.status === 200) {
+	console.log("new details added");
+     console.log("details " + dreq.responseText); 
+	 tasksDetails=dreq.responseText; //recieves the new task file as a String
+    }
+  }
+  
+  dreq.open('POST', '/getDetails', true);
+  dreq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  dreq.send("newDetail=" + taskDetail);
+  console.log("HTTP req für new Task DONE");
+  
   
   
   var myTable = document.getElementById("generatedCalendar");
@@ -139,6 +161,7 @@ console.log("start HTTP req für new Task");
   
   newCells[numColumns-1].innerHTML = nameTask.value;
   newCells[numColumns-1].setAttribute("class", "taskName");
+  newCells[numColumns-1].setAttribute("id", "'"+counter+"'");
   newCells[numColumns-1].setAttribute("onclick", "giveTask("+ counter +")");
   counter++;
   //finding the dates of task and coloring those cells

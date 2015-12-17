@@ -16,6 +16,12 @@ var months = ['Dec','Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'S
       .trim()
 	  .split("/r/n");
 
+var details =
+ fs.readFileSync('details.txt')
+      .toString()
+      .trim()
+	  .split("/r/n");
+	  
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(bodyParser.urlencoded({
@@ -41,6 +47,17 @@ fs.writeFileSync('tasks.txt', tasks.join('\r\n'));
 console.log(tasks);
 res.send(JSON.stringify(tasks));
 });
+
+app.post('/getDetails', function (req, res) {
+var add = req.body.newDetail;
+console.log("new task string is : " + req.body.newDetail);
+console.log(details);
+details.push(add);
+fs.writeFileSync('details.txt', details.join('\r\n'));
+console.log(details);
+res.send(JSON.stringify(details));
+});
+
 //dont need that
 app.post('/sendTask', function (req, res) {
 console.log("in post list");

@@ -1,0 +1,4 @@
+
+task details: task 1.6 details </p> <p> task members: task 1.6 members
+task details: task 1.7 details </p> <p> task members: task 1.7 members
+task details: task 1.9 details  </p> <p> task members: task 1.9 members
