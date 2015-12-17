@@ -72,7 +72,7 @@ function buildList( A , num , task) {
   el.innerHTML = "";
   for(var j = 0; j < A.length ; j++) {
   if (task === A[j]){
-    el.innerHTML += '<p>'+ "task name: " + A[j]+ "</p> <p> " + detailArray[j]+ '</p>';
+    el.innerHTML += "<p class='showingTask'>" +"<b>Task Name: </b>" + A[j]+ "</p> <p class='showingTask'> <b>" + detailArray[j]+ "</b></p>";
 	}
   }
   }
@@ -109,8 +109,8 @@ if(validS === true && validE === true){
   console.log(membersTask.value);
   
   taskString += nameTask.value;
-  taskDetail += "task details: "+ detailsTask.value + " </p> <p> task members: " + membersTask.value;
-console.log("start HTTP req für new Task");
+  taskDetail += "<b>Task Details: </b>"+ detailsTask.value + " </p> <p class='showingTask'><b> Task Members: </b>" + membersTask.value;
+console.log("start HTTP req for new Task");
   var treq = new XMLHttpRequest();
   treq.onreadystatechange = function() {
     if( treq.readyState !== XMLHttpRequest.DONE )
@@ -126,7 +126,7 @@ console.log("start HTTP req für new Task");
   treq.open('POST', '/getContent', true);
   treq.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   treq.send("newTask=" + taskString);
-  console.log("HTTP req für new Task DONE");
+  console.log("HTTP req for new Task DONE");
   
   var dreq = new XMLHttpRequest();
   dreq.onreadystatechange = function() {

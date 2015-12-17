@@ -14,13 +14,13 @@ var months = ['Dec','Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'S
  fs.readFileSync('tasks.txt')
       .toString()
       .trim()
-	  .split("/r/n");
+	  .split("/n");
 
 var details =
  fs.readFileSync('details.txt')
       .toString()
       .trim()
-	  .split("/r/n");
+	  .split("/n");
 	  
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -33,6 +33,10 @@ app.post('/', function (req, res) {
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
+app.get('/share', function (req, res) {
+    console.log('inside share');
+});
+
 app.get('/', function (req, res) {
     console.log('sendfile get is working');
     res.sendFile(path.join(__dirname, '/public/index.html'));
@@ -43,7 +47,7 @@ var add = req.body.newTask;
 console.log("new task string is : " + req.body.newTask);
 console.log(tasks);
 tasks.push(add);
-fs.writeFileSync('tasks.txt', tasks.join('\r\n'));
+fs.writeFileSync('tasks.txt', tasks.join('\n'));
 console.log(tasks);
 res.send(JSON.stringify(tasks));
 });
@@ -53,7 +57,7 @@ var add = req.body.newDetail;
 console.log("new task string is : " + req.body.newDetail);
 console.log(details);
 details.push(add);
-fs.writeFileSync('details.txt', details.join('\r\n'));
+fs.writeFileSync('details.txt', details.join('\n'));
 console.log(details);
 res.send(JSON.stringify(details));
 });

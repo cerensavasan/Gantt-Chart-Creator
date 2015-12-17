@@ -178,3 +178,18 @@ border-width:0px 0px 1px 0px;
 table tr:first-child td:last-child{
 border-width:0px 0px 1px 1px;
 }
+
+#showTask {
+	background-color: #593F52;
+	border:1px solid #ffffff;
+	border-width:1px 1px 1px 1px;
+	margin:0px auto;
+	width: 40%;
+}
+
+.showingTask {
+font-size:20px;
+font-family:Arial;
+font-weight:normal;
+color: #ffffff;
+}
